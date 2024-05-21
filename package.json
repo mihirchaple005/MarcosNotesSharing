@@ -1,0 +1,17 @@
+{
+  "name": "backend-note-sharing",
+  "version": "1.0.0",
+  "description": "backend marcos notes note-sharing",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "backend",
+    "marcos",
+    "note",
+    "sharing"
+  ],
+  "author": "Marcos",
+  "license": "ISC"
+}
