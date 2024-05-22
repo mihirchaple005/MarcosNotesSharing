@@ -1,23 +1,14 @@
-import mongoose  from "mongoose";
-import express from 'express';
-import { DB_NAME } from "../constants.js";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
-const app = express()
-
-const connetDB = async () => {
-    try {
-        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
-        app.on("error",(error) => {
-            console.log("Error After connecting : ERR -> ", error);
-        })
-        console.log(`MongoDB connect !! DB Host : ${connectionInstance.connection.host}`)
-        // app.listen(process.env.PORT, () => {
-        //     console.log("App Listning At PORT : ",process.env.PORT)
-        // })
-    } catch (error) {
-        console.log("Unable to connect DataBase : ERR -> ", error)
-        process.exit(1)
+const connectDB = async() => {
+    try{
+        const conn = await mongoose.connect(process.env.MONGO_URL)
+        console.log(`${conn.connection.host}`)
     }
-}
-
-export default connetDB
+    catch(error){
+        console.log('Error in db hosting line')
+    }
+};
+export default connectDB;
