@@ -17,6 +17,10 @@ const noteModel=new mongoose.Schema({
     description:{
         type:String,
         required:true
+    },
+    branchname:{
+        type:String,
+        required:true
     }
 },{timestamps:true})
 export default mongoose.model('notes',noteModel)
