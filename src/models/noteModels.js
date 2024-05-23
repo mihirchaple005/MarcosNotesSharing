@@ -10,6 +10,10 @@ const noteModel=new mongoose.Schema({
         ref:"user",
         required:true
     },
+    slug:{
+        type:String,
+        required:true,
+      },
     cloud_link:{
         type:String,
         required:true
