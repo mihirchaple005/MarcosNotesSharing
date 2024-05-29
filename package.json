@@ -16,10 +16,12 @@
   "author": "Marcos",
   "license": "ISC",
   "devDependencies": {
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5"
   },
   "dependencies": {
+    "cloudinary": "^2.2.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongodb": "^6.6.2",
