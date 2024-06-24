@@ -2,15 +2,15 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js"
 import { User } from "../models/userModels.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
-import { ApiResponse } from "../utils/ApiResponse"
+import { ApiResponse } from "../utils/ApiResponse.js"
 
 
 const generateAccessAndRefreshToken = async (userId) => {
     try {
         const user = await User.findById(userId)
     
-        const accessToken = user.generateAccessToken()
-        const refreshToken = user.generateRefreshToken()
+        const accessToken = await user.generateAccessToken()
+        const refreshToken = await   user.generateRefreshToken()
     
         user.refreshToken = refreshToken
         await user.save({validateBeforeSave: false})
@@ -52,13 +52,17 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Password and Check Password must be same")
     }
 
-    const profilePicPath = req.files?.img[0].path
+    const profilePicPath = req.files?.profilePic[0].path
 
     if (!profilePicPath) {
         throw new ApiError(400 , "Profile picture is required")
     }
 
+    console.log(profilePicPath);
+
     const profilePic = await uploadOnCloudinary(profilePicPath)
+
+    console.log(profilePic);
 
     if(!profilePic) {
         throw new ApiError(400, "Profile pic is required")
@@ -75,7 +79,6 @@ const registerUser = asyncHandler(async (req, res) => {
         password, 
         email,
         profilePic : profilePic.url,
-        user_type
     })
 
     
@@ -98,3 +101,4 @@ const registerUser = asyncHandler(async (req, res) => {
 })
 
 export { registerUser }
+

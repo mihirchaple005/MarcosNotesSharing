@@ -19,4 +19,8 @@ import userRouter from "./routes/userRoutes.js"
 
 app.use("/api/v1/user",userRouter)
 
+import reviewRouter from "./routes/reviewRoute.js"
+
+app.use("/api/v1/notes/review",reviewRouter)
+
 export { app }

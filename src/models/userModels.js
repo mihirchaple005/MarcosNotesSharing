@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcrypt'
-import { jwt } from "jsonwebtoken";
+import  jwt  from "jsonwebtoken";
 
 
 //user-details initialisation
@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
         required:true
     },
     contact:{
-        type:Number,
+        type:String,
         required:true
     },
     password:{
@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
         required:true,
         unique:true
     },
-    ProfilePic:{
+    profilePic:{
         data:Buffer,
         contentType:String
     },

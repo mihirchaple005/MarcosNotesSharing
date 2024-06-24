@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Review } from "./reviewModel";
 
 const productSchema =new mongoose.Schema({
   name:{
@@ -8,10 +9,6 @@ const productSchema =new mongoose.Schema({
   description:{
     type:String,
     required:true
-  },
-  slug:{
-    type:String,
-    required:true,
   },
   price:{
     type:Number,
@@ -25,6 +22,10 @@ const productSchema =new mongoose.Schema({
     data:Buffer,
     contentType:String
   },
+  productReview : {
+    type : mongoose.Types.ObjectId,
+    ref : Review,
+  }
  })
 
 export default mongoose.model("Products",productSchema)

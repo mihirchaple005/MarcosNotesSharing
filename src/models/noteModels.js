@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
+import { Review } from "./reviewModel";
+import { User } from "./userModels";
 
-const noteModel=new mongoose.Schema({
+const noteSchema = new mongoose.Schema({
     title:{
         type:String,
         required:true
     },
     username:{
-        type:mongoose.ObjectId,
-        ref:"user",
+        type:mongoose.Types.ObjectId,
+        ref : User,
         required:true
     },
     slug:{
@@ -25,6 +27,14 @@ const noteModel=new mongoose.Schema({
     branchname:{
         type:String,
         required:true
-    }
+    },
+    review : [
+        {
+            type : mongoose.Types.ObjectId,
+            ref : Review,
+            default : null
+        }
+    ]
 },{timestamps:true})
-export default mongoose.model('notes',noteModel)
+
+export const Notes = mongoose.model("Notes",noteSchema)
