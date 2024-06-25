@@ -12,10 +12,6 @@ const noteSchema = new mongoose.Schema({
         ref : User,
         required:true
     },
-    slug:{
-        type:String,
-        required:true,
-      },
     cloud_link:{
         type:String,
         required:true
@@ -34,7 +30,11 @@ const noteSchema = new mongoose.Schema({
             ref : Review,
             default : null
         }
-    ]
+    ],
+    image:{
+        data:Buffer,
+        contentType:String
+    }
 },{timestamps:true})
 
 export const Notes = mongoose.model("Notes",noteSchema)
